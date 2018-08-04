@@ -1,0 +1,74 @@
+ext {
+    // app 相关版本控制
+    versions = [
+            compileSdk : 27,
+            buildTools : "27.0.3",
+
+            minSdk     : 16,
+            targetSdk  : 27,
+
+            versionCode: 1,
+            versionName: "1.0.1"
+    ]
+
+    key = [
+
+    ]
+
+    sign = [
+            signFile     : '../sign.jks',
+            storePassword: '123456',
+            keyAlias     : 'android',
+            keyPassword  : '123456'
+    ]
+
+    deps = [
+            appcompatV7            : "com.android.support:appcompat-v7:27.1.1",
+            design                 : 'com.android.support:design:27.1.1',
+            recyclerView           : 'com.android.support:recyclerview-v7:27.1.1',
+            supportVectorDrawable  : 'com.android.support:support-vector-drawable:27.1.1',
+
+            // RecyclerView 适配器
+            recyclerViewAdapter    : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30",
+            // 自动分包
+            multidex               : "com.android.support:multidex:1.0.3",
+            // 图片加载
+            glide                  : "com.github.bumptech.glide:glide:4.7.1",
+            glideAp                : "com.github.bumptech.glide:compiler:4.7.1",
+            // 圆角ImageView
+            circleimageview        : "de.hdodenhof:circleimageview:2.2.0",
+            // 图片选择器
+            matisse                : "com.zhihu.android:matisse:0.4.3",
+            // 图片预览
+            photoview              : "com.github.chrisbanes:PhotoView:2.1.3",
+            // 图片压缩
+            luban                  : "top.zibin:Luban:1.1.5",
+            // 注解
+            butterKnife            : "com.jakewharton:butterknife:8.8.1",
+            butterKnifeAp          : "com.jakewharton:butterknife-compiler:8.8.1",
+            // 注解权限
+            permissionsDispatcher  : "com.github.hotchemi:permissionsdispatcher:3.2.0",
+            permissionsDispatcherAp: "com.github.hotchemi:permissionsdispatcher-processor:3.2.0",
+            // 工具类集合
+            utilcode               : "com.blankj:utilcode:1.15.1",
+            // json解析
+            fastjson               : "com.alibaba:fastjson:1.2.47",
+            fastjsonAndroid        : "com.alibaba:fastjson:1.1.68.android",
+            // 事件总线
+            eventBus               : "org.greenrobot:eventbus:3.1.1",
+            // 创建文本图片
+            textdrawable           : "com.amulyakhare:com.amulyakhare.textdrawable:1.0.1",
+            // 图片轮播（需要v4）
+            bgaBanner              : "cn.bingoogolapple:bga-banner:2.2.4@aar",
+            // 下拉刷新（必须有appcompat-v7:23+）
+            smartRefresh           : "com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-5",
+            smartRefreshHeader     : "com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-5",//特殊header
+            //数据库
+            greenDao               : "org.greenrobot:greendao:3.2.2",
+
+            //test
+            testJunit              : "junit:junit:4.12",
+            testRunner             : "com.android.support.test:runner:1.0.2",
+            testEspresso           : "com.android.support.test.espresso:espresso-core:3.0.2",
+    ]
+}

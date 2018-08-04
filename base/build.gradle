@@ -1,0 +1,40 @@
+apply plugin: 'com.android.library'
+
+android {
+    def versions = rootProject.ext.versions
+
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
+
+    defaultConfig {
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode versions.versionCode
+        versionName versions.versionName
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+}
+
+dependencies {
+    def deps = rootProject.ext.deps
+    //    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api deps.appcompatV7
+    api deps.multidex
+    api deps.fastjsonAndroid
+    api deps.utilcode
+    //    api deps.design
+    //    api deps.supportVectorDrawable
+    api deps.butterKnife
+    //    annotationProcessor deps.butterKnifeAp
+    api(deps.permissionsDispatcher) {
+        exclude module: "support-v13"
+        exclude module: "support-v4"
+    }
+    annotationProcessor deps.permissionsDispatcherAp
+}

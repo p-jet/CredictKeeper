@@ -1,28 +1,71 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    def versions = rootProject.ext.versions
+
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
+
     defaultConfig {
-        applicationId "com.example.juntaopu.creditkeeper"
-        minSdkVersion 15
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        applicationId "com.melody.creditkeeper"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode versions.versionCode
+        versionName versions.versionName
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        vectorDrawables.useSupportLibrary = true
+
     }
-    buildTypes {
+
+    signingConfigs {
+        def sign = rootProject.ext.sign
+        debug {}
         release {
+            storeFile file(sign.signFile)
+            storePassword sign.storePassword
+            keyAlias sign.keyAlias
+            keyPassword sign.keyPassword
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.release
+        }
+        release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:28.0.0-beta01'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    def deps = rootProject.ext.deps
+//    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':base')
+    implementation deps.glide
+    annotationProcessor deps.glideAp
+    implementation deps.eventBus
+    implementation deps.bgaBanner
+    implementation deps.greenDao
+
+    //此依赖必须添加
+    annotationProcessor deps.butterKnifeAp
+
+    testImplementation deps.testJunit
+    androidTestImplementation deps.testRunner
+    androidTestImplementation deps.testEspresso
+}
+
+apply plugin: 'org.greenrobot.greendao'
+
+greendao {
+    schemaVersion 1
+    daoPackage android.defaultConfig.applicationId
+    targetGenDir 'src/main/java/greendao'
 }
