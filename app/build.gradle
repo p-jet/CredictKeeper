@@ -48,13 +48,12 @@ dependencies {
     def deps = rootProject.ext.deps
     //    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(path: ':base')
-    implementation deps.glide
-    annotationProcessor deps.glideAp
-    implementation deps.eventBus
-    implementation deps.bgaBanner
     implementation deps.greenDao
+    implementation deps.smartRefresh
+    implementation deps.textdrawable
     //此依赖必须添加
     annotationProcessor deps.butterKnifeAp
+
     testImplementation deps.testJunit
     androidTestImplementation deps.testRunner
     androidTestImplementation deps.testEspresso
