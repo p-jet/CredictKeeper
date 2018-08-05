@@ -1,17 +1,27 @@
 package com.melody.creditkeeper.beans;
 
-import java.sql.Date;
+import com.melody.creditkeeper.beans.bank.BankBean;
+import com.melody.creditkeeper.beans.bank.BankBeanCover;
+
+import org.greenrobot.greendao.annotation.Convert;
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Id;
+
+import java.util.Date;
+import org.greenrobot.greendao.annotation.Generated;
 
 /**
  * 信用卡实体类
  */
+@Entity
 public class CreditCardBean {
 
-    // id
-    private int id;
+    @Id(autoincrement = true)
+    private Long id;
     //卡名
     private String cardName;
     //银行
+    @Convert(converter = BankBeanCover.class, columnType = String.class)
     private BankBean bank;
     //卡片号码
     private String cardNum;
@@ -47,11 +57,33 @@ public class CreditCardBean {
     public CreditCardBean() {
     }
 
-    public int getId() {
+    @Generated(hash = 722369484)
+    public CreditCardBean(Long id, String cardName, BankBean bank, String cardNum,
+            double amount, double surpulsAmount, boolean isQuota, double quota,
+            Date validDataStart, Date validDataEnd, int billDate, int repaymentDate,
+            String phone, String name, String remark) {
+        this.id = id;
+        this.cardName = cardName;
+        this.bank = bank;
+        this.cardNum = cardNum;
+        this.amount = amount;
+        this.surpulsAmount = surpulsAmount;
+        this.isQuota = isQuota;
+        this.quota = quota;
+        this.validDataStart = validDataStart;
+        this.validDataEnd = validDataEnd;
+        this.billDate = billDate;
+        this.repaymentDate = repaymentDate;
+        this.phone = phone;
+        this.name = name;
+        this.remark = remark;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -165,5 +197,13 @@ public class CreditCardBean {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public boolean getIsQuota() {
+        return this.isQuota;
+    }
+
+    public void setIsQuota(boolean isQuota) {
+        this.isQuota = isQuota;
     }
 }

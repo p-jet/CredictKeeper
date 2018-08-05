@@ -63,7 +63,12 @@ dependencies {
 apply plugin: 'org.greenrobot.greendao'
 
 greendao {
+    //数据库版本号
     schemaVersion 1
-    daoPackage android.defaultConfig.applicationId
-    targetGenDir 'src/main/java/greendao'
+    //设置DaoMaster、DaoSession、Dao包名
+    daoPackage android.defaultConfig.applicationId + ".greendao"
+    //设置DaoMaster、DaoSession、Dao目录
+    targetGenDir 'src/main/java'
+    //targetGenDirTest：设置生成单元测试目录
+    //generateTests：设置自动生成单元测试用例
 }

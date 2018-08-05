@@ -1,9 +1,7 @@
 package com.melody.creditkeeper;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
-import com.example.juntaopu.creditkeeper.R;
+import android.support.v7.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
