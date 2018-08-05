@@ -23,6 +23,9 @@ public class BillBean {
     //期数
     private int volume;
 
+    //分期利率
+    private double stageRate;
+
     //备注
     private String remark;
 
