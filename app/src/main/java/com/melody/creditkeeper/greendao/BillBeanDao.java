@@ -31,7 +31,9 @@ public class BillBeanDao extends AbstractDao<BillBean, Long> {
         public final static Property IsStage = new Property(4, boolean.class, "isStage", false, "IS_STAGE");
         public final static Property Volume = new Property(5, int.class, "volume", false, "VOLUME");
         public final static Property StageRate = new Property(6, double.class, "stageRate", false, "STAGE_RATE");
-        public final static Property Remark = new Property(7, String.class, "remark", false, "REMARK");
+        public final static Property OverdueRate = new Property(7, double.class, "overdueRate", false, "OVERDUE_RATE");
+        public final static Property CurrentVolume = new Property(8, int.class, "currentVolume", false, "CURRENT_VOLUME");
+        public final static Property Remark = new Property(9, String.class, "remark", false, "REMARK");
     }
 
 
@@ -54,7 +56,9 @@ public class BillBeanDao extends AbstractDao<BillBean, Long> {
                 "\"IS_STAGE\" INTEGER NOT NULL ," + // 4: isStage
                 "\"VOLUME\" INTEGER NOT NULL ," + // 5: volume
                 "\"STAGE_RATE\" REAL NOT NULL ," + // 6: stageRate
-                "\"REMARK\" TEXT);"); // 7: remark
+                "\"OVERDUE_RATE\" REAL NOT NULL ," + // 7: overdueRate
+                "\"CURRENT_VOLUME\" INTEGER NOT NULL ," + // 8: currentVolume
+                "\"REMARK\" TEXT);"); // 9: remark
     }
 
     /** Drops the underlying database table. */
@@ -85,10 +89,12 @@ public class BillBeanDao extends AbstractDao<BillBean, Long> {
         stmt.bindLong(5, entity.getIsStage() ? 1L: 0L);
         stmt.bindLong(6, entity.getVolume());
         stmt.bindDouble(7, entity.getStageRate());
+        stmt.bindDouble(8, entity.getOverdueRate());
+        stmt.bindLong(9, entity.getCurrentVolume());
  
         String remark = entity.getRemark();
         if (remark != null) {
-            stmt.bindString(8, remark);
+            stmt.bindString(10, remark);
         }
     }
 
@@ -114,10 +120,12 @@ public class BillBeanDao extends AbstractDao<BillBean, Long> {
         stmt.bindLong(5, entity.getIsStage() ? 1L: 0L);
         stmt.bindLong(6, entity.getVolume());
         stmt.bindDouble(7, entity.getStageRate());
+        stmt.bindDouble(8, entity.getOverdueRate());
+        stmt.bindLong(9, entity.getCurrentVolume());
  
         String remark = entity.getRemark();
         if (remark != null) {
-            stmt.bindString(8, remark);
+            stmt.bindString(10, remark);
         }
     }
 
@@ -136,7 +144,9 @@ public class BillBeanDao extends AbstractDao<BillBean, Long> {
             cursor.getShort(offset + 4) != 0, // isStage
             cursor.getInt(offset + 5), // volume
             cursor.getDouble(offset + 6), // stageRate
-            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7) // remark
+            cursor.getDouble(offset + 7), // overdueRate
+            cursor.getInt(offset + 8), // currentVolume
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9) // remark
         );
         return entity;
     }
@@ -150,7 +160,9 @@ public class BillBeanDao extends AbstractDao<BillBean, Long> {
         entity.setIsStage(cursor.getShort(offset + 4) != 0);
         entity.setVolume(cursor.getInt(offset + 5));
         entity.setStageRate(cursor.getDouble(offset + 6));
-        entity.setRemark(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setOverdueRate(cursor.getDouble(offset + 7));
+        entity.setCurrentVolume(cursor.getInt(offset + 8));
+        entity.setRemark(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
      }
     
     @Override

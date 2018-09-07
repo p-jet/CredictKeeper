@@ -4,6 +4,7 @@ import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 
 import java.util.Date;
+
 import org.greenrobot.greendao.annotation.Generated;
 
 /**
@@ -26,18 +27,30 @@ public class BillBean {
 
     //是否分期
     private boolean isStage;
+
     //期数
     private int volume;
 
     //分期利率
     private double stageRate;
 
+    //逾期利率
+    private double overdueRate;
+
+    //当前期数
+    private int currentVolume;
+
     //备注
     private String remark;
 
-    @Generated(hash = 335728223)
+    @Generated(hash = 562884989)
+    public BillBean() {
+    }
+
+    @Generated(hash = 2134023499)
     public BillBean(Long id, String usage, double amount, Date billDate,
-            boolean isStage, int volume, double stageRate, String remark) {
+            boolean isStage, int volume, double stageRate, double overdueRate,
+            int currentVolume, String remark) {
         this.id = id;
         this.usage = usage;
         this.amount = amount;
@@ -45,11 +58,9 @@ public class BillBean {
         this.isStage = isStage;
         this.volume = volume;
         this.stageRate = stageRate;
+        this.overdueRate = overdueRate;
+        this.currentVolume = currentVolume;
         this.remark = remark;
-    }
-
-    @Generated(hash = 562884989)
-    public BillBean() {
     }
 
     public Long getId() {
@@ -106,6 +117,22 @@ public class BillBean {
 
     public void setStageRate(double stageRate) {
         this.stageRate = stageRate;
+    }
+
+    public double getOverdueRate() {
+        return overdueRate;
+    }
+
+    public void setOverdueRate(double overdueRate) {
+        this.overdueRate = overdueRate;
+    }
+
+    public int getCurrentVolume() {
+        return currentVolume;
+    }
+
+    public void setCurrentVolume(int currentVolume) {
+        this.currentVolume = currentVolume;
     }
 
     public String getRemark() {

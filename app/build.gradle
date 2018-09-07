@@ -54,11 +54,11 @@ dependencies {
     //此依赖必须添加
     annotationProcessor deps.butterKnifeAp
 
-    /**********skin-support************/
+    /********** 换肤：skin-support************/
     //基础控件支持
-    implementation 'skin.support:skin-support:3.1.0-beta1'
+//    implementation 'skin.support:skin-support:3.1.0-beta1'
     //material design 控件支持[可选]
-    implementation 'skin.support:skin-support-design:3.1.0-beta1'
+//    implementation 'skin.support:skin-support-design:3.1.0-beta1'
     //CardView 控件支持[可选]
 //    implementation 'skin.support:skin-support-cardview:3.1.0-beta1'
     //ConstraintLayout 控件支持[可选]
